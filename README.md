@@ -1,170 +1,161 @@
-# Model Deployment as API | The Iris Dataset
 
-Deploying a Machine Learning Model as a REST API with Flask
+# 🌸 Model Deployment as API | The Iris Dataset
+
+Deploying a Machine Learning Model as a REST API using Flask and Docker.
 
 ![Iris](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Machine+Learning+R/iris-machinelearning.png "Iris")
 
+---
 
-## Data Set Information
+## 📊 Dataset Overview
 
-This is perhaps the best known database to be found in the pattern recognition literature. The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other. 
+This is one of the most well-known datasets in pattern recognition. It includes **3 classes** of 50 instances each (Setosa, Versicolour, Virginica), based on:
 
-Predicted attribute: class of iris plant. 
+1. Sepal length (cm)
+2. Sepal width (cm)
+3. Petal length (cm)
+4. Petal width (cm)
+5. Class label
 
-## Attribute Information
+---
 
-1. sepal length in cm 
-2. sepal width in cm 
-3. petal length in cm 
-4. petal width in cm 
-5. class: 
--- Iris Setosa 
--- Iris Versicolour 
--- Iris Virginica
+## 🔧 Project Structure & Steps
 
-## Steps
-1. Build and train the machine learning model in a Jupyter Notebook (file: _model/Iris_model.ipynb_),
-2. save the model in a (pickle) file (file: _api/iris_model.pkl_)
-3. create an API application that uses the pre-trained model to generate predictions (file: _api/api.py_),
-3. encapsulate the application in a Docker container (file: _api/Dockerfile_),
-4. deploy the application to a cloud server.
+1. Build and train the machine learning model in Jupyter Notebook (`model/Iris_model.ipynb`)
+2. Save the model to `api/iris_model.pkl`
+3. Create a RESTful API (`api/api.py`) with **POST** and **GET** endpoints
+4. Write a Dockerfile to containerize the app
+5. Run the app locally or with Docker
 
-## Technical Requirements
-+ Python 3.4+,
-+ Docker,
-+ The required Python libraries used can be installed from the included _requirements.txt_ file:
+---
 
+## 💻 Requirements
 
-## Running the application locally
-### Directly
+* Python 3.6+
+* Docker
+* Dependencies from `requirements.txt`
+
+---
+
+## 🚀 How to Run
+
+### ▶️ Run Locally (No Docker)
+
 ```bash
 # Clone the project
 git clone https://github.com/AchilleasKn/flask_api_python.git
 
-# Change Directory
+# Navigate to API folder
 cd flask_api_python/api
 
-# Install pip for Python3
-apt install python3-pip
-
-# Install the requirements
+# Install dependencies
 pip3 install -r requirements.txt
 
-# Run the script in Python
+# Run the API
 python3 api.py
 ```
 
-### On Docker
+---
 
-###### Available images:
-- achilleaskn/flask_api_python:latest
+### 🐳 Run with Docker
 
-This image is based on the python:3.6-jessie official image
-
-[![](https://images.microbadger.com/badges/image/achilleaskn/flask_api_python.svg)](https://microbadger.com/images/achilleaskn/flask_api_python "Get your own image badge on microbadger.com")
-
-- achilleaskn/flask_api_python:alpine.latest
-
-This image is based on Alpine Linux image which is a lightweight version of Linux
-
-[![](https://images.microbadger.com/badges/image/achilleaskn/flask_api_python:alpine.latest.svg)](https://microbadger.com/images/achilleaskn/flask_api_python:alpine.latest "Get your own image badge on microbadger.com")
-
-##### From scratch
+#### 🔨 Build from Source
 
 ```bash
 # Clone the project
 git clone https://github.com/AchilleasKn/flask_api_python.git
-
-# Change Directory
 cd flask_api_python/api
 
-# Build the docker image
-docker build -t flask_api .
+# Build the Docker image
+docker build -t iris_api .
 
-# For the alpine version run the following
-#docker build -f Dockerfile.alpine -t flask_api .
-
-# Run the flask_api image and expose the 5000 port 
-docker run -d -p 5000:5000 flask_api
-
-# To see the running containers
-docker ps 
-
-# To see the logs of our running container
-docker logs <Container ID>
+# Run the container
+docker run -d -p 5000:5000 iris_api
 ```
 
-##### With Docker Pull
+#### 🪝 Pull Prebuilt Image (Original Image by Author)
+
 ```bash
-# Pull the docker image
+# Pull and run image
 docker pull achilleaskn/flask_api_python:latest
-
-# For the alpine version run the following
-#docker pull achilleaskn/flask_api_python:alpine.latest
-
-# Run the flask_api image and expose the 5000 port 
 docker run -d -p 5000:5000 achilleaskn/flask_api_python:latest
-
-# For the alpine version run the following
-#docker run -d -p 5000:5000 achilleaskn/flask_api_python:alpine.latest
-
-# To see the running containers
-docker ps 
-
-# To see the logs of our running container
-docker logs <Container ID>
 ```
 
-### Testing the application
-Once it is running, the API can be queried using HTTP POST requests.
-I recommend using [postman](https://www.getpostman.com/) for testing.
+---
 
-URL: `http://0.0.0.0:5000/predict`
+## 📬 API Endpoints
 
-- Sample query for "Setosa" type:
+### 🔍 `POST /predict`
+
+Make predictions by sending a feature array.
+
+**Request:**
+
 ```json
 {
-	"feature_array":[4.9, 2.9, 1.2, 0.3]
+  "feature_array": [6.4, 3.2, 4.5, 1.5]
 }
 ```
 
-The response should look like this:
+**Response:**
+
 ```json
 {
-    "prediction": [
-        0
-    ]
+  "prediction": [1]
 }
 ```
 
-- Sample query for "Versicolour" type:
-```json
-{
-	"feature_array":[6.4, 3.2, 4.5, 1.5]
-} 
+### 📄 `GET /`
+
+Simple welcome message or health check.
+
+**Request:**
+
+```bash
+curl http://localhost:5000/
 ```
 
-The response should look like this:
+**Response:**
+
 ```json
 {
-    "prediction": [
-        1
-    ]
+  "message": "Welcome to the Iris Prediction API"
 }
 ```
 
-- Sample query for "Virginica" type:
-```json
-{
-	"feature_array":[6.2, 3.1, 5.3, 2.4]
-} 
-```
+---
 
-The response should look like this:
-```json
-{
-    "prediction": [
-        2
-    ]
-}
-```
+## 🧪 Testing
+
+You can test the API using tools like:
+
+* [Postman](https://www.postman.com/)
+* `curl`
+* Python `requests` module
+
+---
+
+## 📦 Sample Queries
+
+| Type        | Feature Array          | Prediction |
+| ----------- | ---------------------- | ---------- |
+| Setosa      | `[4.9, 2.9, 1.2, 0.3]` | `[0]`      |
+| Versicolour | `[6.4, 3.2, 4.5, 1.5]` | `[1]`      |
+| Virginica   | `[6.2, 3.1, 5.3, 2.4]` | `[2]`      |
+
+---
+
+## 👨‍💻 Author (Forked & Updated by You)
+
+This is a forked and extended version of the original [AchilleasKn/flask\_api\_python](https://github.com/AchilleasKn/flask_api_python) repository.
+
+Feel free to clone, customize, and deploy your own ML APIs.
+
+---
+
+Would you like me to:
+
+* Include a badge or updated image from **your Docker Hub**, if you published it?
+* Add cURL or Python example scripts?
+
+Let me know and I’ll tailor it further.
