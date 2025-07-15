@@ -151,11 +151,4 @@ This is a forked and extended version of the original [AchilleasKn/flask\_api\_p
 
 Feel free to clone, customize, and deploy your own ML APIs.
 
----
 
-Would you like me to:
-
-* Include a badge or updated image from **your Docker Hub**, if you published it?
-* Add cURL or Python example scripts?
-
-Let me know and I’ll tailor it further.
