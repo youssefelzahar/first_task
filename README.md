@@ -45,16 +45,18 @@ This is one of the most well-known datasets in pattern recognition. It includes 
 
 ```bash
 # Clone the project
-git clone https://github.com/AchilleasKn/flask_api_python.git
+git clone git clone https://github.com/youssefelzahar/first_task.git
+
 
 # Navigate to API folder
-cd flask_api_python/api
+cd first_task/api
 
 # Install dependencies
 pip3 install -r requirements.txt
 
 # Run the API
 python3 api.py
+python3 data_api.py
 ```
 
 ---
@@ -65,25 +67,16 @@ python3 api.py
 
 ```bash
 # Clone the project
-git clone https://github.com/AchilleasKn/flask_api_python.git
-cd flask_api_python/api
+git clone https://github.com/youssefelzahar/first_task.git
+cd first_task/api
 
 # Build the Docker image
-docker build -t iris_api .
-
+docker-compose up --build
 # Run the container
-docker run -d -p 5000:5000 iris_api
+docker-compose up
 ```
 
-#### 🪝 Pull Prebuilt Image (Original Image by Author)
 
-```bash
-# Pull and run image
-docker pull achilleaskn/flask_api_python:latest
-docker run -d -p 5000:5000 achilleaskn/flask_api_python:latest
-```
-
----
 
 ## 📬 API Endpoints
 
@@ -107,23 +100,27 @@ Make predictions by sending a feature array.
 }
 ```
 
-### 📄 `GET /`
-
-Simple welcome message or health check.
-
-**Request:**
-
-```bash
-curl http://localhost:5000/
 ```
+✅ Get All Data
+GET /data
+Returns all Iris dataset records.
 
-**Response:**
+http://127.0.0.1:5000/data
 
-```json
+✅ Add New Record
+POST /data
+Add a new record to the dataset.
+Request Body:
 {
-  "message": "Welcome to the Iris Prediction API"
+  "sepal length (cm)": 6.4,
+  "sepal width (cm)": 3.2,
+  "petal length (cm)": 4.5,
+  "petal width (cm)": 1.5,
+  "target": 1
 }
-```
+
+
+
 
 ---
 
@@ -132,8 +129,6 @@ curl http://localhost:5000/
 You can test the API using tools like:
 
 * [Postman](https://www.postman.com/)
-* `curl`
-* Python `requests` module
 
 ---
 
