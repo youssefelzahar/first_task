@@ -1,23 +1,5 @@
 
-# 🌸 Model Deployment as API | The Iris Dataset
-
-Deploying a Machine Learning Model as a REST API using Flask and Docker.
-
-![Iris](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Machine+Learning+R/iris-machinelearning.png "Iris")
-
----
-
-## 📊 Dataset Overview
-
-This is one of the most well-known datasets in pattern recognition. It includes **3 classes** of 50 instances each (Setosa, Versicolour, Virginica), based on:
-
-1. Sepal length (cm)
-2. Sepal width (cm)
-3. Petal length (cm)
-4. Petal width (cm)
-5. Class label
-
----
+## fixed solution internship
 
 ## 🔧 Project Structure & Steps
 
@@ -25,9 +7,10 @@ This is one of the most well-known datasets in pattern recognition. It includes 
 2. Save the model to `api/iris_model.pkl`
 3. Create a RESTful API (`api/api.py`) with **POST** and **GET** endpoints
 4. Create a RESTful API (`api/data_api.py`) with **POST** and **GET** endpoints
-5. Write a Dockerfile to containerize the frontend and backend
-6. decompose docker files 
-7. Run the app locally or with Docker
+5. create frontend by using streamlit
+6. Write a Dockerfile to containerize the frontend and backend
+7. decompose docker files 
+8. Run the app locally or with Docker
 
 ---
 
@@ -57,6 +40,10 @@ pip3 install -r requirements.txt
 # Run the API
 python3 api.py
 python3 data_api.py
+
+# Run frontend
+cd frontend
+python -m streamlit run app.py
 ```
 
 ---
@@ -74,6 +61,12 @@ cd first_task/api
 docker-compose up --build
 # Run the container
 docker-compose up
+
+
+🌐 Access:
+Backend API → http://localhost:5000
+
+Frontend App → http://localhost:8501
 ```
 
 
@@ -100,17 +93,18 @@ Make predictions by sending a feature array.
 }
 ```
 
-```
-✅ Get All Data
-GET /data
+## Get All Data
+
+**GET /data**
 Returns all Iris dataset records.
 
 http://127.0.0.1:5000/data
 
-✅ Add New Record
-POST /data
+## Add New Record
+**POST /data**
 Add a new record to the dataset.
-Request Body:
+
+```Request Body:
 {
   "sepal length (cm)": 6.4,
   "sepal width (cm)": 3.2,
@@ -118,11 +112,7 @@ Request Body:
   "petal width (cm)": 1.5,
   "target": 1
 }
-
-
-
-
----
+```
 
 ## 🧪 Testing
 
