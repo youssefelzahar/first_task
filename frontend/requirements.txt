@@ -3,5 +3,4 @@ pickleshare
 numpy>=1.13.0
 pandas
 scipy
-streamlit
 scikit-learn

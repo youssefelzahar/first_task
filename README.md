@@ -24,8 +24,10 @@ This is one of the most well-known datasets in pattern recognition. It includes 
 1. Build and train the machine learning model in Jupyter Notebook (`model/Iris_model.ipynb`)
 2. Save the model to `api/iris_model.pkl`
 3. Create a RESTful API (`api/api.py`) with **POST** and **GET** endpoints
-4. Write a Dockerfile to containerize the app
-5. Run the app locally or with Docker
+4. Create a RESTful API (`api/data_api.py`) with **POST** and **GET** endpoints
+5. Write a Dockerfile to containerize the frontend and backend
+6. decompose docker files 
+7. Run the app locally or with Docker
 
 ---
 
@@ -145,7 +147,7 @@ You can test the API using tools like:
 
 ---
 
-## 👨‍💻 Author (Forked & Updated by You)
+## 👨‍💻 Author (Forked & Updated by youssefelzahar)
 
 This is a forked and extended version of the original [AchilleasKn/flask\_api\_python](https://github.com/AchilleasKn/flask_api_python) repository.
 

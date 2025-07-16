@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.13-slim 
 
 RUN pip install --upgrade pip
 
@@ -14,4 +14,4 @@ EXPOSE 8501
 EXPOSE 5000
 
 # Run Streamlit and Flask together
-CMD ["bash", "-c", "streamlit run data_api.py & python api.py"]
+CMD ["python", "api.py"]
