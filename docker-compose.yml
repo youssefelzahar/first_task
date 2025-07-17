@@ -14,12 +14,16 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "8501:8501" 
+      - "8501:8501"
+    environment:
+      - API_URL=http://backend:5000 
     depends_on:
       - backend
     networks:
       - app-network
+      
 
 networks:
   app-network:
     driver: bridge
+
