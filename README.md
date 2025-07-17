@@ -64,7 +64,7 @@ docker-compose up
 
 
 🌐 Access:
-Backend API → http://localhost:5000
+Backend for API → http://localhost:5000/predict
 
 Frontend App → http://localhost:8501
 ```
@@ -103,6 +103,7 @@ http://127.0.0.1:5000/data
 ## Add New Record
 **POST /data**
 Add a new record to the dataset.
+http://127.0.0.1:5000/data
 
 ```Request Body:
 {
